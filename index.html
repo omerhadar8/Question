@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שאלה חשובה</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background: #fff0f5;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+
+    .container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+    }
+
+    button {
+        font-size: 20px;
+        padding: 15px 30px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        touch-action: manipulation;
+    }
+
+    #yes {
+        background-color: #ff69b4;
+        color: white;
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        transform: translateX(-50%);
+        z-index: 2;
+    }
+
+    #no {
+        background-color: #ddd;
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+    }
+</style>
+</head>
+<body>
+
+<h1>אגם אולי כבר תצאי איתי?</h1>
+
+<div class="container">
+    <button id="no">ממש לא</button>
+    <button id="yes">טוב בסדר</button>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const container = document.querySelector(".container");
+
+function moveButton() {
+    const containerRect = container.getBoundingClientRect();
+    const yesRect = yesBtn.getBoundingClientRect();
+    const noRect = noBtn.getBoundingClientRect();
+
+    const maxX = containerRect.width - noRect.width;
+    const maxY = yesBtn.offsetTop - noRect.height - 10; // שלא יעלה על ה"כן"
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = `${randomX}px`;
+    noBtn.style.top = `${randomY}px`;
+}
+
+noBtn.addEventListener("touchstart", moveButton);
+noBtn.addEventListener("click", moveButton);
+
+yesBtn.addEventListener("click", () => {
+    alert("ידעתי 😌❤️");
+});
+</script>
+
+</body>
+</html>
