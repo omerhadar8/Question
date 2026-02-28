@@ -2,8 +2,7 @@
 <html lang="he">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>שאלה חשובה</title>
+<title>שאלה חשובה 💖</title>
 <style>
     body {
         margin: 0;
@@ -13,88 +12,84 @@
         justify-content: center;
         align-items: center;
         font-family: Arial, sans-serif;
-        background: #fff0f5;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
         overflow: hidden;
     }
 
     h1 {
+        font-size: 2.5rem;
+        color: #fff;
         text-align: center;
-        margin-bottom: 40px;
-        padding: 0 20px;
     }
 
-    .container {
+    .buttons {
         position: relative;
-        width: 100%;
-        height: 300px;
+        margin-top: 40px;
     }
 
     button {
-        font-size: 20px;
-        padding: 15px 30px;
-        border-radius: 12px;
+        padding: 15px 40px;
+        font-size: 1.2rem;
         border: none;
+        border-radius: 30px;
         cursor: pointer;
-        touch-action: manipulation;
+        margin: 0 20px;
+        transition: 0.2s ease;
     }
 
     #yes {
-        background-color: #ff69b4;
+        background-color: #4CAF50;
         color: white;
-        position: absolute;
-        left: 50%;
-        bottom: 20px;
-        transform: translateX(-50%);
-        z-index: 2;
     }
 
     #no {
-        background-color: #ddd;
+        background-color: #f44336;
+        color: white;
         position: absolute;
-        top: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1;
+    }
+
+    #message {
+        margin-top: 30px;
+        font-size: 1.5rem;
+        color: white;
+        display: none;
     }
 </style>
 </head>
 <body>
 
-<h1>הדר רוצה להיות חברה שלי?</h1>
+<h1>הדר רוצה להיות חברה שלי? </h1>
 
-<div class="container">
-    <button id="no">ממש לא</button>
-    <button id="yes">טוב בסדר</button>
+<div class="buttons">
+    <button id="yes">כן</button>
+    <button id="no">לא</button>
 </div>
 
+<div id="message"> ❤️</div>
+
 <script>
-const noBtn = document.getElementById("no");
-const yesBtn = document.getElementById("yes");
-const container = document.querySelector(".container");
+const noButton = document.getElementById("no");
+const yesButton = document.getElementById("yes");
+const message = document.getElementById("message");
 
 function moveButton() {
-    const containerRect = container.getBoundingClientRect();
-    const yesRect = yesBtn.getBoundingClientRect();
-    const noRect = noBtn.getBoundingClientRect();
+    const padding = 100;
+    const maxX = window.innerWidth - noButton.offsetWidth - padding;
+    const maxY = window.innerHeight - noButton.offsetHeight - padding;
 
-    const maxX = containerRect.width - noRect.width;
-    const maxY = yesBtn.offsetTop - noRect.height - 10; // שלא יעלה על ה"כן"
+    let randomX = Math.random() * maxX;
+    let randomY = Math.random() * maxY;
 
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-
-    noBtn.style.left = `${randomX}px`;
-    noBtn.style.top = `${randomY}px`;
+    noButton.style.left = randomX + "px";
+    noButton.style.top = randomY + "px";
 }
 
-noBtn.addEventListener("touchstart", moveButton);
-noBtn.addEventListener("click", moveButton);
+noButton.addEventListener("mouseover", moveButton);
 
-yesBtn.addEventListener("click", () => {
-    alert("ידעתי 😌❤️");
+yesButton.addEventListener("click", () => {
+    message.style.display = "block";
 });
 </script>
 
 </body>
 </html>
-
